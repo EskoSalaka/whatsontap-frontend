@@ -1,0 +1,36 @@
+name: DEPLOY
+
+on:
+  push:
+    branches: [ "main" ]
+    paths: ['src/**']
+  pull_request:
+    branches: [ "main" ]
+    paths: ['src/**']
+  workflow_dispatch:
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: run npm ci
+        run: npm ci
+      - name: npm run build
+        run: npm run build
+      - name: setup dist
+        uses: actions/upload-artifact@v3
+        with:
+          name: frontend-build
+          path: ./dist/
+          
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Download build
+        uses: actions/download-artifact@v3
+        with:
+          name: frontend-build
+          path: /var/www/sites/whatsontap/
