@@ -26,6 +26,24 @@ import { BarsService } from 'src/app/services/bars.service'
         border-width: 0;
         margin-top: 56px;
       }
+      .sidenav-list-item {
+        font-size: 16px;
+        font-size: 1.1rem;
+        line-height: 28px;
+        line-height: 2.8rem;
+        font-weight: 200;
+        padding-left: 20px;
+        margin: 0;
+        transition: background-color 0.1s;
+      }
+
+      .sidenav-list-item-active {
+        font-weight: 600;
+        border-top-right-radius: 36px;
+        border-bottom-right-radius: 36px;
+        color: #d176e1;
+        background: rgba(156, 39, 176, 0.3);
+      }
 
       .sidenav .mat-toolbar {
         background: inherit;
@@ -33,6 +51,11 @@ import { BarsService } from 'src/app/services/bars.service'
 
       .content {
         margin: 16px;
+      }
+
+      .bar-icon {
+        width: 24px;
+        padding-right: 6px;
       }
 
       .mat-toolbar.mat-primary {
@@ -72,7 +95,14 @@ import { BarsService } from 'src/app/services/bars.service'
           *ngIf="isHandset$ | async">
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
-        <span>whatsontap</span>
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <img
+            alt="..."
+            src="{{ 'assets/icons/' + 'one pint pub' + '.jpg' }}"
+            class="bar-icon"
+            onerror="this.src='/assets/icons/beer-mug.png'" />
+          <span>whatsontap</span>
+        </div>
       </div>
       <div style="font-size: 14px">
         <mat-form-field appearance="outline" disabled="true">
@@ -95,12 +125,22 @@ import { BarsService } from 'src/app/services/bars.service'
         [mode]="(isHandset$ | async) ? 'over' : 'side'"
         [opened]="(isHandset$ | async) === false">
         <mat-nav-list>
-          <a
-            *ngFor="let bar of this.barsService.getBars() | async"
-            mat-list-item
-            [routerLink]="bar.name | slugify">
-            {{ bar.name }}
-          </a>
+          <ng-container *ngFor="let bar of this.barsService.getBars() | async">
+            <a
+              mat-list-item
+              [routerLink]="bar.name | slugify"
+              [routerLinkActive]="['sidenav-list-item-active']"
+              class="sidenav-list-item">
+              <span mat-line fxLayout="row" fxLayoutAlign="start center">
+                <img
+                  alt="..."
+                  src="{{ 'assets/icons/' + bar.name + '.jpg' }}"
+                  class="bar-icon"
+                  onerror="this.src='/assets/icons/beer-mug.png'" />
+                {{ bar.name }}
+              </span>
+            </a>
+          </ng-container>
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
@@ -123,11 +163,4 @@ export class NavComponent {
     private breakpointObserver: BreakpointObserver,
     public barsService: BarsService
   ) {}
-
-  slugify(text: string) {
-    return text
-      .toLowerCase()
-      .replace(/ /g, '-')
-      .replace(/[^\w-]+/g, '')
-  }
 }
