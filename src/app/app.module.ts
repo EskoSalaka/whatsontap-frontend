@@ -28,6 +28,9 @@ import { MatChipsModule } from '@angular/material/chips'
 import { HomeComponent } from './pages/home/home.component'
 import { MatInputModule } from '@angular/material/input'
 import { FooterComponent } from './common/nav/footer.component'
+import { MatCardModule } from '@angular/material/card'
+import { BarListComponent } from './pages/home/bar-list.component';
+import { ThickSeparatorComponent } from './common/thick-separator/thick-separator.component'
 
 @NgModule({
   declarations: [
@@ -41,6 +44,8 @@ import { FooterComponent } from './common/nav/footer.component'
     BarHeaderComponent,
     HomeComponent,
     FooterComponent,
+    BarListComponent,
+    ThickSeparatorComponent,
   ],
   imports: [
     MatChipsModule,
@@ -62,6 +67,7 @@ import { FooterComponent } from './common/nav/footer.component'
     MatListModule,
     MatTabsModule,
     MatInputModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

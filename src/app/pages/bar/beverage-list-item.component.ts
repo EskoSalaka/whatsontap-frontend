@@ -6,9 +6,6 @@ import { IBeverage } from 'src/app/models'
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `
-      ::ng-deep .mat-list-item {
-        overflow: auto !important;
-      }
       .item-content {
         height: 100px;
         margin-top: 4px;
@@ -42,15 +39,10 @@ import { IBeverage } from 'src/app/models'
         font-style: italic;
         margin-bottom: 6px;
       }
-
-      ::ng-deep .mat-list-item-content {
-        align-items: flex-start !important;
-        overflow: auto !important;
-      }
     `,
   ],
   template: `
-    <mat-list-item fxLayout="row" class="item-content mat-list-item">
+    <div fxLayout="row" class="item-content mat-list-item">
       <img
         style="padding-right:6px;"
         alt="..."
@@ -74,7 +66,7 @@ import { IBeverage } from 'src/app/models'
         </div>
         <p class="beverage-description">{{ beverage.description }}</p>
       </div>
-    </mat-list-item>
+    </div>
   `,
 })
 export class BeverageListItemComponent {
