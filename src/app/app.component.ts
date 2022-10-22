@@ -6,12 +6,6 @@ import { BarsService } from './services/bars.service'
 @Component({
   selector: 'app-root',
   template: `
-    <ngx-spinner
-      [showSpinner]="false"
-      [fullScreen]="true"
-      type="ball-scale-multiple">
-      <p style="font-size: 20px; color: white">Loading...</p>
-    </ngx-spinner>
     <app-nav></app-nav>
   `,
 })
