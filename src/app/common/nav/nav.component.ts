@@ -56,6 +56,10 @@ import { BarsService } from 'src/app/services/bars.service'
         padding-right: 6px;
       }
 
+      .content {
+        padding: 12px;
+      }
+
       .page-outer-content {
         overflow-y: auto;
         margin-top: 60px;
