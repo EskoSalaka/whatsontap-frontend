@@ -2,3 +2,34 @@
 
 html, body { overflow-x: initial !important;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+// ******************* Common styles *********************** //
+.nodecor { text-decoration: none !important; }
+.full-width { width: 100%; }
+
+
+// ******************* Spacings *********************** //
+$spaceamounts: (0, 6, 8, 10, 12, 16, 20, 24, 32); // Adjust this to include the pixel amounts you need.
+$sides: (top, bottom, left, right); // all positions
+
+@each $space in $spaceamounts {
+  @each $side in $sides {
+    .m#{str-slice($side, 0, 1)}-#{$space} {
+      margin-#{$side}: #{$space}px !important;
+    }
+
+    .p#{str-slice($side, 0, 1)}-#{$space} {
+      padding-#{$side}: #{$space}px !important;
+    }
+  }
+}
+
+@each $space in $spaceamounts {
+  .m-#{$space} {
+    margin: #{$space}px !important;
+  }
+
+  .p-#{$space} {
+    padding: #{$space}px !important;
+  }
+}
