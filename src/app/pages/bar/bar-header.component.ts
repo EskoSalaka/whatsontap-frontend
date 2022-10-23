@@ -54,10 +54,15 @@ import { IBar } from 'src/app/models'
               fxLayoutGap="4px">
               <mat-icon class="secondary-icon" fontIcon="home"></mat-icon>
               <span>{{ bar.address }}</span>
-              <button class="map-button" mat-stroked-button color="primary">
+              <a
+                class="map-button"
+                mat-stroked-button
+                color="primary"
+                href="{{ bar.googleMapsLink }}"
+                target="_blank">
                 <mat-icon class="secondary-icon" fontIcon="map"></mat-icon>
                 <span>Map</span>
-              </button>
+              </a>
             </p>
           </div>
           <p

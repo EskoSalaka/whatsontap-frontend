@@ -5,8 +5,9 @@ export interface IBar {
   name: string
   address?: string
   updatedAt: string
-  googlePlusCode: String
-  phoneNumber?: String
+  googlePlusCode: string
+  googleMapsLink: string
+  phoneNumber?: string
   latestBeerLists: IBeverageList[]
   url: string
 }
