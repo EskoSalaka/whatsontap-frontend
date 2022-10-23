@@ -8,6 +8,9 @@ import { BarsService } from 'src/app/services/bars.service'
   selector: 'app-nav',
   styles: [
     `
+      a {
+        color: white;
+      }
       .toolbar {
         padding-left: 24px;
         padding-right: 24px;
@@ -103,14 +106,14 @@ import { BarsService } from 'src/app/services/bars.service'
             *ngIf="isHandset$ | async">
             <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
           </button>
-          <div fxLayout="row" fxLayoutAlign="start center">
-            <img
-              alt="..."
-              src="{{ 'assets/icons/' + 'one pint pub' + '.jpg' }}"
-              class="bar-icon"
-              onerror="this.src='/assets/icons/beer-mug.png'" />
+          <a
+            fxLayout="row"
+            fxLayoutAlign="start center"
+            [routerLink]="'/'"
+            class="nodecor">
+            <img alt="..." src="assets/icons/beer-mug.png" class="bar-icon" />
             <span>whatsontap</span>
-          </div>
+          </a>
         </div>
         <div style="font-size: 14px">
           <mat-form-field appearance="outline" disabled="true">
