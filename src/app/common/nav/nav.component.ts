@@ -64,7 +64,7 @@ import { BarsService } from 'src/app/services/bars.service'
       }
 
       .page-outer-content {
-        overflow-y: auto;
+        overflow: hidden;
         margin-top: 60px;
       }
 
