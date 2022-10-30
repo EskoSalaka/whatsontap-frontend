@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core'
+import { CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID, NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
@@ -18,7 +18,7 @@ import { NgxSpinnerModule } from 'ngx-spinner'
 import { HttpClientModule } from '@angular/common/http'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { SlugifyPipe } from './pipes/slugify.pipe'
-import { CommonModule } from '@angular/common'
+import { CommonModule, registerLocaleData } from '@angular/common'
 import { BarComponent } from './pages/bar/bar.component'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { MatDividerModule } from '@angular/material/divider'
@@ -29,8 +29,11 @@ import { HomeComponent } from './pages/home/home.component'
 import { MatInputModule } from '@angular/material/input'
 import { FooterComponent } from './common/nav/footer.component'
 import { MatCardModule } from '@angular/material/card'
-import { BarListComponent } from './pages/home/bar-list.component';
+import { BarListComponent } from './pages/home/bar-list.component'
 import { ThickSeparatorComponent } from './common/thick-separator/thick-separator.component'
+import localeDeAt from '@angular/common/locales/fi'
+
+registerLocaleData(localeDeAt)
 
 @NgModule({
   declarations: [
@@ -69,7 +72,7 @@ import { ThickSeparatorComponent } from './common/thick-separator/thick-separato
     MatInputModule,
     MatCardModule,
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: 'fi' }],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
