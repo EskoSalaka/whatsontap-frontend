@@ -57,10 +57,12 @@ import { IBeverage } from 'src/app/models'
         <div fxLayout="row">
           <p class="beverage-secondary" *ngIf="beverage.abv">
             {{ beverage.abv }}
-            <app-spacer-bullet *ngIf="beverage.ibu"></app-spacer-bullet>
+            <app-spacer-bullet
+              *ngIf="beverage.ibu || beverage.brewery"></app-spacer-bullet>
           </p>
           <p class="beverage-secondary">
             {{ beverage.ibu }}
+            <app-spacer-bullet *ngIf="beverage.brewery"></app-spacer-bullet>
           </p>
           <p class="beverage-secondary">{{ beverage.brewery?.name }}</p>
         </div>
