@@ -12,11 +12,11 @@ import { IBar } from 'src/app/models'
     <mat-list>
       <a
         *ngFor="let bar of bars; let i = index"
-        routerLink="/one-pint-pub"
+        [routerLink]="bar.name | slugify"
         class="nodecor p-10 bar-list-item">
         <mat-list-item fxLayout="row" fxLayoutAlign="start center">
           <div fxLayout="row" fxLayoutAlign="start center">
-            <span class="pr-10">1.</span>
+            <span class="pr-10">{{ i.toString() + '.' }}</span>
             <img
               alt="..."
               src="{{ 'assets/icons/' + bar.name + '.jpg' }}"
