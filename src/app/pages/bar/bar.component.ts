@@ -14,19 +14,25 @@ import { BarsService } from 'src/app/services/bars.service'
             [beverageList]="bar.latestBeerLists[0]"></app-beverage-list>
           <div style="padding:12px; float:right;">
             <span>
-              Information retrieved at
-              <span>{{ bar.updatedAt | date: 'short':this.timezone }}</span>
+              Information retrieved at:
+              <span>
+                <b>{{ bar.updatedAt | date: 'short':this.timezone }}</b>
+              </span>
               <app-spacer-bullet
                 *ngIf="
                   bar.latestBeerLists[0].updatedByBarAt
                 "></app-spacer-bullet>
             </span>
+            <app-spacer-bullet></app-spacer-bullet>
             <span>
-              Updated by the venue at
-              <span *ngIf="bar.latestBeerLists[0].updatedByBarAt">
+              Updated by the venue at:
+              <span *ngIf="bar.latestBeerLists[0].updatedByBarAt; else noInfo">
                 {{ bar.latestBeerLists[0].updatedByBarAt }}
               </span>
             </span>
+            <ng-template #noInfo>
+              <span><b>< No info ></b></span>
+            </ng-template>
           </div>
         </mat-tab>
       </mat-tab-group>
