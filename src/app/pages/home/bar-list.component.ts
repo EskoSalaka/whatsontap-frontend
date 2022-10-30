@@ -13,7 +13,7 @@ import { IBar } from 'src/app/models'
       <a
         *ngFor="let bar of bars; let i = index"
         [routerLink]="bar.name | slugify"
-        class="nodecor p-10 bar-list-item">
+        class="nodecor bar-list-item">
         <mat-list-item fxLayout="row" fxLayoutAlign="start center">
           <div fxLayout="row" fxLayoutAlign="start center">
             <span class="pr-10">{{ i.toString() + '.' }}</span>
