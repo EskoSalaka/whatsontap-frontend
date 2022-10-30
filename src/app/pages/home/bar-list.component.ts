@@ -16,7 +16,7 @@ import { IBar } from 'src/app/models'
         class="nodecor bar-list-item">
         <mat-list-item fxLayout="row" fxLayoutAlign="start center">
           <div fxLayout="row" fxLayoutAlign="start center">
-            <span class="pr-10">{{ i.toString() + '.' }}</span>
+            <span class="pr-10">{{ (i + 1).toString() + '.' }}</span>
             <img
               alt="..."
               src="{{ 'assets/icons/' + bar.name + '.jpg' }}"
