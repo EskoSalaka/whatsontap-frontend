@@ -32,7 +32,7 @@ import { Observable } from 'rxjs'
             <ng-container *ngIf="bars$ | async as bars">
               <app-bar-list [bars]="bars"></app-bar-list>
             </ng-container>
-            <p class="pl-16">More to come soon...</p>
+            <p class="pl-16 pt-16">More to come soon...</p>
           </mat-card-content>
         </mat-card>
       </div>
