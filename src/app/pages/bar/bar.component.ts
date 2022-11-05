@@ -18,10 +18,6 @@ import { BarsService } from 'src/app/services/bars.service'
               <span>
                 <b>{{ bar.updatedAt | date: 'short':this.timezone }}</b>
               </span>
-              <app-spacer-bullet
-                *ngIf="
-                  bar.latestBeerLists[0].updatedByBarAt
-                "></app-spacer-bullet>
             </span>
             <app-spacer-bullet></app-spacer-bullet>
             <span>
