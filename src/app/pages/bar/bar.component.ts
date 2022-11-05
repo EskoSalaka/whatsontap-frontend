@@ -16,7 +16,7 @@ import { BarsService } from 'src/app/services/bars.service'
             <span>
               Information retrieved at:
               <span>
-                <b>{{ bar.updatedAt | date: 'short':this.timezone }}</b>
+                <b>{{ bar.lastCrawledAt | date: 'short':this.timezone }}</b>
               </span>
             </span>
             <app-spacer-bullet></app-spacer-bullet>

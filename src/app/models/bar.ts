@@ -5,6 +5,7 @@ export interface IBar {
   name: string
   address?: string
   updatedAt: string
+  lastCrawledAt: string
   googlePlusCode: string
   googleMapsLink: string
   phoneNumber?: string
