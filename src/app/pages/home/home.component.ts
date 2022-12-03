@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core'
 import { IBar } from 'src/app/models'
 import { BarsService } from 'src/app/services/bars.service'
 import { Observable } from 'rxjs'
+import { fadeAnimation } from 'src/app/common/animations/fade'
 
 @Component({
   template: `
-    <div fxLayout="column" fxLayoutAlign="space-around center">
+    <div fxLayout="column" fxLayoutAlign="space-around center" @fade>
       <div
         fxLayout="column"
         fxLayoutAlign="space-around center"
@@ -45,6 +46,7 @@ import { Observable } from 'rxjs'
       }
     `,
   ],
+  animations: [fadeAnimation],
 })
 export class HomeComponent implements OnInit {
   bars$: Observable<IBar[] | null>
