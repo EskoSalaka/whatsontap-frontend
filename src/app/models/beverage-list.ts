@@ -14,4 +14,6 @@ export interface IBeverageList {
   beers: IBeverage[]
   updatedByBarAt?: string
   updatedByBarAtDt?: Date
+  updatedAt: Date
+  createdAt: Date
 }
