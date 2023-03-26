@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { BehaviorSubject, map, Observable, of } from 'rxjs'
+import { map, Observable, ReplaySubject } from 'rxjs'
 import { IBar } from '../models'
 import { SlugifyPipe } from '../pipes/slugify.pipe'
 
@@ -7,11 +7,14 @@ import { SlugifyPipe } from '../pipes/slugify.pipe'
   providedIn: 'root',
 })
 export class BarsService {
-  bars$ = new BehaviorSubject<IBar[] | null>(null)
-  favourite$ = new BehaviorSubject<IBar | null>(null)
+  bars$ = new ReplaySubject<IBar[]>()
 
-  getBars(): Observable<IBar[] | null> {
-    return this.bars$.asObservable()
+  getBars(city?: string): Observable<IBar[]> {
+    return this.bars$.pipe(
+      map((bars) =>
+        city ? bars?.filter((bar) => bar.address?.includes(city)) : bars
+      )
+    )
   }
 
   setBars(bars: IBar[]) {
@@ -32,13 +35,5 @@ export class BarsService {
         )
       )
     )
-  }
-
-  getFavourite() {
-    this.favourite$.asObservable()
-  }
-
-  setFavourite(barName: IBar['name']) {
-    this.favourite$
   }
 }
