@@ -32,7 +32,7 @@ import { BarsService } from 'src/app/services/bars.service'
       }
 
       .sidenav {
-        width: 200px;
+        width: 210px;
         background-color: transparent;
         border-width: 0;
         margin-top: 56px;
