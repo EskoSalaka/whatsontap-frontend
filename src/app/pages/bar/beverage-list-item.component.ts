@@ -36,7 +36,6 @@ import { IBeverage } from 'src/app/models'
       .beverage-style {
         font-size: 1.2em;
         font-weight: 400;
-        font-style: italic;
         margin-bottom: 6px;
       }
     `,
