@@ -11,6 +11,17 @@ import { BarsService } from 'src/app/services/bars.service'
       a {
         color: white;
       }
+
+      .locality-separator {
+        color: whitesmoke;
+        display: block;
+        padding-left: 12px;
+        padding-top: 6px;
+        font-size: 1.2rem;
+        line-height: 2.2rem;
+        font-weight: 400;
+        margin-bottom: 0;
+      }
       .toolbar {
         padding-left: 24px;
         padding-right: 24px;
@@ -136,8 +147,27 @@ import { BarsService } from 'src/app/services/bars.service'
           [mode]="(isHandset$ | async) ? 'over' : 'side'"
           [opened]="(isHandset$ | async) === false">
           <mat-nav-list>
+            <p class="locality-separator">Helsinki</p>
             <ng-container
-              *ngFor="let bar of this.barsService.getBars() | async">
+              *ngFor="let bar of this.barsService.getBars('Helsinki') | async">
+              <a
+                mat-list-item
+                [routerLink]="bar.name | slugify"
+                [routerLinkActive]="['sidenav-list-item-active']"
+                class="sidenav-list-item">
+                <span mat-line fxLayout="row" fxLayoutAlign="start center">
+                  <img
+                    alt="..."
+                    src="{{ 'assets/icons/' + bar.name + '.jpg' }}"
+                    class="bar-icon"
+                    onerror="this.src='/assets/icons/beer-mug.png'" />
+                  {{ bar.name }}
+                </span>
+              </a>
+            </ng-container>
+            <p class="locality-separator">Espoo</p>
+            <ng-container
+              *ngFor="let bar of this.barsService.getBars('Espoo') | async">
               <a
                 mat-list-item
                 [routerLink]="bar.name | slugify"
