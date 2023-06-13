@@ -32,6 +32,10 @@ import { MatCardModule } from '@angular/material/card'
 import { BarListComponent } from './pages/home/bar-list.component'
 import { ThickSeparatorComponent } from './common/thick-separator/thick-separator.component'
 import localeDeAt from '@angular/common/locales/fi'
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { SearchInputComponent } from './common/search-input/search-input.component'
+import { MatAutocompleteModule } from '@angular/material/autocomplete'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 registerLocaleData(localeDeAt)
 
@@ -49,6 +53,7 @@ registerLocaleData(localeDeAt)
     FooterComponent,
     BarListComponent,
     ThickSeparatorComponent,
+    SearchInputComponent,
   ],
   imports: [
     MatChipsModule,
@@ -71,6 +76,10 @@ registerLocaleData(localeDeAt)
     MatTabsModule,
     MatInputModule,
     MatCardModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'fi' }],
   bootstrap: [AppComponent],

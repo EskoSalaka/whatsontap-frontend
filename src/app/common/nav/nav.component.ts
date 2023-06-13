@@ -87,19 +87,6 @@ import { BarsService } from 'src/app/services/bars.service'
         border-bottom-style: solid;
         border-bottom-color: lightgrey;
       }
-
-      ::ng-deep .mat-form-field-wrapper {
-        margin-bottom: -1.25em !important;
-      }
-
-      ::ng-deep .mat-form-field-outline-start {
-        border-radius: 28px 0 0 28px !important;
-        min-width: 28px !important;
-      }
-
-      ::ng-deep .mat-form-field-outline-end {
-        border-radius: 0 28px 28px 0 !important;
-      }
     `,
   ],
   template: `
@@ -126,17 +113,7 @@ import { BarsService } from 'src/app/services/bars.service'
             <span>whatsontap</span>
           </a>
         </div>
-        <div style="font-size: 14px">
-          <mat-form-field appearance="outline" disabled="true">
-            <input
-              disabled="true"
-              matInput
-              type="search"
-              placeholder="search to come soon..."
-              class="search-input" />
-            <mat-icon matSuffix>search</mat-icon>
-          </mat-form-field>
-        </div>
+        <app-search-input></app-search-input>
       </mat-toolbar>
       <mat-sidenav-container class="sidenav-container">
         <mat-sidenav
