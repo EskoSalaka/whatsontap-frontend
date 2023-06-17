@@ -190,7 +190,7 @@ import { BarsService } from 'src/app/services/bars.service'
 })
 export class NavComponent {
   isHandset$: Observable<boolean> = this.breakpointObserver
-    .observe(Breakpoints.Handset)
+    .observe([Breakpoints.Handset, Breakpoints.Small])
     .pipe(
       map((result) => result.matches),
       shareReplay()

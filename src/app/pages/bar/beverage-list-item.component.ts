@@ -17,26 +17,78 @@ import { IBeverage } from 'src/app/models'
         font-size: 1.4em;
         margin-bottom: 6px;
         margin-right: 16px;
+        height: 24px;
         color: darkorange;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
 
       .beverage-description {
         font-size: 14px;
-        line-height: normal;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;
+        margin-bottom: 0px;
+        height: 3em;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
       }
 
       .beverage-description-show {
         overflow: visible;
         text-overflow: none;
         height: auto;
+        margin-bottom: 0px;
       }
+
       .beverage-style {
         font-size: 1.2em;
         font-weight: 400;
         margin-bottom: 6px;
+        height: 1.2em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .beverage-secondary {
+        font-size: 1em;
+        margin-bottom: 8px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 1.5em;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+      }
+
+      @media screen and (max-width: 599px) {
+        .item-content {
+          height: 80px;
+        }
+
+        .beverage-name {
+          font-weight: 600;
+          line-height: 24px;
+          font-size: 1em;
+          margin-right: 12px;
+        }
+
+        .beverage-style {
+          font-size: 0.8em;
+          font-weight: 400;
+          margin-bottom: 6px;
+          height: 1.5em;
+        }
+
+        .beverage-description {
+          font-size: 12px;
+          height: 1.5em;
+        }
+
+        .beverage-secondary {
+          font-size: 0.9em;
+        }
       }
     `,
   ],
@@ -53,19 +105,19 @@ import { IBeverage } from 'src/app/models'
           <p class="beverage-style">{{ beverage.style }}</p>
         </div>
 
-        <div fxLayout="row">
-          <p class="beverage-secondary" *ngIf="beverage.abv">
+        <p fxLayout="row" class="beverage-secondary">
+          <span *ngIf="beverage.abv">
             {{ beverage.abv }}
-          </p>
-          <p class="beverage-secondary" *ngIf="beverage.ibu">
+          </span>
+          <span *ngIf="beverage.ibu">
             <app-spacer-bullet></app-spacer-bullet>
             {{ beverage.ibu }}
-          </p>
-          <p class="beverage-secondary" *ngIf="beverage.brewery?.name">
+          </span>
+          <span *ngIf="beverage.brewery?.name">
             <app-spacer-bullet *ngIf="beverage.brewery"></app-spacer-bullet>
             {{ beverage.brewery?.name }}
-          </p>
-        </div>
+          </span>
+        </p>
         <p class="beverage-description">{{ beverage.description }}</p>
       </div>
     </div>
