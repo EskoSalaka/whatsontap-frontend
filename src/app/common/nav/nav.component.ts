@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout'
 import { Observable } from 'rxjs'
-import { map, shareReplay } from 'rxjs/operators'
+import { map, shareReplay, tap } from 'rxjs/operators'
 import { BarsService } from 'src/app/services/bars.service'
 
 @Component({
@@ -10,6 +10,10 @@ import { BarsService } from 'src/app/services/bars.service'
     `
       a {
         color: white;
+      }
+
+      .flex-expand {
+        flex: 1 1;
       }
 
       .locality-separator {
@@ -87,6 +91,13 @@ import { BarsService } from 'src/app/services/bars.service'
         border-bottom-style: solid;
         border-bottom-color: lightgrey;
       }
+
+      @media screen and (max-width: 599px) {
+        .toolbar {
+          padding-left: 6px;
+          padding-right: 6px;
+        }
+      }
     `,
   ],
   template: `
@@ -94,6 +105,7 @@ import { BarsService } from 'src/app/services/bars.service'
       <mat-toolbar
         fxLayout="row"
         fxLayoutAlign="space-between center"
+        fxLayoutGap="12px"
         class="toolbar mat-elevation-z4">
         <div fxLayout="row" fxLayoutAlign="start center">
           <button
@@ -105,6 +117,7 @@ import { BarsService } from 'src/app/services/bars.service'
             <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
           </button>
           <a
+            *ngIf="!(this.isHandset$ | async)"
             fxLayout="row"
             fxLayoutAlign="start center"
             [routerLink]="'/'"
@@ -113,7 +126,10 @@ import { BarsService } from 'src/app/services/bars.service'
             <span>whatsontap</span>
           </a>
         </div>
-        <app-search-input></app-search-input>
+        <app-search-input
+          [ngClass]="{
+            'flex-expand': isHandset$ | async
+          }"></app-search-input>
       </mat-toolbar>
       <mat-sidenav-container class="sidenav-container">
         <mat-sidenav

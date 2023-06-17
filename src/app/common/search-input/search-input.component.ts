@@ -22,7 +22,9 @@ import { BarsService } from 'src/app/services/bars.service'
   styles: [
     `
       .search-input {
-        width: 300px;
+        min-width: 300px;
+        width: 100%;
+        font-size: 14px;
       }
 
       ::ng-deep .mat-form-field-wrapper {
@@ -40,34 +42,32 @@ import { BarsService } from 'src/app/services/bars.service'
     `,
   ],
   template: `
-    <div style="font-size: 14px">
-      <mat-form-field appearance="outline" class="search-input">
-        <mat-icon matPrefix>search</mat-icon>
-        <input
-          [formControl]="searchControl"
-          [matAutocomplete]="auto"
-          matInput
-          type="search"
-          placeholder="search for beers..." />
+    <mat-form-field appearance="outline" class="search-input">
+      <mat-icon matPrefix>search</mat-icon>
+      <input
+        [formControl]="searchControl"
+        [matAutocomplete]="auto"
+        matInput
+        type="search"
+        placeholder="search for beers..." />
 
-        <button
-          *ngIf="this.searchControl.value"
-          matSuffix
-          mat-icon-button
-          aria-label="Clear"
-          (click)="this.onReset()">
-          <mat-icon>close</mat-icon>
-        </button>
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option
-            *ngFor="let result of searchResults$ | async"
-            [value]="result.beer.name"
-            (click)="onResultClicked(result)">
-            {{ result.beer.name }} - {{ result.bar.name }}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-    </div>
+      <button
+        *ngIf="this.searchControl.value"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="this.onReset()">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option
+          *ngFor="let result of searchResults$ | async"
+          [value]="result.beer.name"
+          (click)="onResultClicked(result)">
+          {{ result.beer.name }} - {{ result.bar.name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
   `,
 })
 export class SearchInputComponent implements OnInit {
