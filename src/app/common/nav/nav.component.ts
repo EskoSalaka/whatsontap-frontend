@@ -1,8 +1,9 @@
-import { Component } from '@angular/core'
+import { Component, ViewChild } from '@angular/core'
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout'
 import { Observable } from 'rxjs'
-import { map, shareReplay, tap } from 'rxjs/operators'
+import { map, shareReplay, take } from 'rxjs/operators'
 import { BarsService } from 'src/app/services/bars.service'
+import { MatSidenav } from '@angular/material/sidenav'
 
 @Component({
   selector: 'app-nav',
@@ -83,6 +84,10 @@ import { BarsService } from 'src/app/services/bars.service'
         margin-top: 60px;
       }
 
+      .drawer-cover {
+        background-color: rgba(33, 38, 37, 0.72);
+      }
+
       .mat-toolbar.mat-primary {
         position: sticky;
         top: 0;
@@ -90,6 +95,10 @@ import { BarsService } from 'src/app/services/bars.service'
         border-bottom-width: 1px;
         border-bottom-style: solid;
         border-bottom-color: lightgrey;
+      }
+
+      .mat-drawer-backdrop.mat-drawer-shown {
+        background-color: #212625b5;
       }
 
       @media screen and (max-width: 599px) {
@@ -136,6 +145,9 @@ import { BarsService } from 'src/app/services/bars.service'
           #drawer
           class="sidenav"
           fixedInViewport
+          [ngClass]="{
+            'drawer-cover': isHandset$ | async
+          }"
           [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
           [mode]="(isHandset$ | async) ? 'over' : 'side'"
           [opened]="(isHandset$ | async) === false">
@@ -145,6 +157,7 @@ import { BarsService } from 'src/app/services/bars.service'
               *ngFor="let bar of this.barsService.getBars('Helsinki') | async">
               <a
                 mat-list-item
+                (click)="onNavigate()"
                 [routerLink]="bar.name | slugify"
                 [routerLinkActive]="['sidenav-list-item-active']"
                 class="sidenav-list-item">
@@ -189,15 +202,23 @@ import { BarsService } from 'src/app/services/bars.service'
   `,
 })
 export class NavComponent {
+  @ViewChild('drawer') drawer: MatSidenav
+
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe([Breakpoints.Handset, Breakpoints.Small])
     .pipe(
       map((result) => result.matches),
-      shareReplay()
+      shareReplay(1)
     )
 
   constructor(
     private breakpointObserver: BreakpointObserver,
     public barsService: BarsService
   ) {}
+
+  onNavigate() {
+    this.isHandset$.pipe(take(1)).subscribe((isHandset) => {
+      if (isHandset) this.drawer.toggle()
+    })
+  }
 }
